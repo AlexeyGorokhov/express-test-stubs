@@ -1,0 +1,40 @@
+{
+  "name": "express-test-stubs",
+  "version": "1.0.0",
+  "description": "Collection of stubs for unit testing Express endpoints",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/semistandard --verbose | ./node_modules/.bin/snazzy && ./node_modules/.bin/tape 'test/**/*.test.js' | tap-summary"
+  },
+  "author": {
+    "name": "Alexey Gorokhov",
+    "email": "alexey.gorokhov@icloud.com",
+    "url": ""
+  },
+  "license": "MIT",
+  "keywords": [
+    "express",
+    "unit testing",
+    "test",
+    "stub",
+    "mock"
+  ],
+  "homepage": "https://github.com/AlexeyGorokhov/express-test-stubs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlexeyGorokhov/express-test-stubs"
+  },
+  "bugs": {
+    "url": "https://github.com/AlexeyGorokhov/express-test-stubsr/issues"
+  },
+  "devDependencies": {
+    "semistandard": "^12.0.0",
+    "snazzy": "^7.0.0",
+    "tap-summary": "^4.0.0",
+    "tape": "^4.8.0"
+  },
+  "dependencies": {
+    "sinon": "^4.2.2",
+    "stampit": "^4.0.2"
+  }
+}
