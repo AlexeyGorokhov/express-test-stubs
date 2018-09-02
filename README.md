@@ -134,6 +134,16 @@ Sinon spy function with empty implementation.
 
 Sinon spy function with empty implementation.
 
+###### {sinon.spy} expressStubs.res.send
+
+Sinon spy function with empty implementation.
+
+
+
+##### {sinon.spy} expressStubs.next
+
+Sinon spy function with empty implementation.
+
 
 ### {Stamp} ExpressStubs.Req
 
