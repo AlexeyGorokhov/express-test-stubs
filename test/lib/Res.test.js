@@ -52,6 +52,20 @@ test('"json" prop', t => {
   t.end();
 });
 
+test('"send" prop', t => {
+  const res = Res();
+
+  res.send();
+
+  t.equal(
+    res.send.called,
+    true,
+    'should have "send" prop which is a spy'
+  );
+
+  t.end();
+});
+
 test('with additional props', t => {
   const additionalPropStub = Symbol('');
 
