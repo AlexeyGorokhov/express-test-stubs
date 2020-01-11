@@ -1,6 +1,6 @@
 'use strict';
 
-const stampit = require('stampit');
+const stampit = require('@stamp/it');
 const sinon = require('sinon');
 
 const DefaultReq = require('./lib/Req');
@@ -8,10 +8,13 @@ const DefaultRes = require('./lib/Res');
 
 module.exports = stampit()
   .init((opts = {}, { instance }) => {
-    const { req: Req = DefaultReq } = opts;
+    const {
+      req: Req = DefaultReq,
+      res: Res = DefaultRes
+    } = opts;
 
     instance.req = Req();
-    instance.res = DefaultRes();
+    instance.res = Res();
     instance.next = sinon.spy();
 
     instance[Symbol.iterator] = function () {
@@ -36,5 +39,6 @@ module.exports = stampit()
     };
   })
   .statics({
-    Req: DefaultReq
+    Req: DefaultReq,
+    Res: DefaultRes
   });
