@@ -66,6 +66,11 @@ const expressStubs = ExpressStubs({
   req: ExpressStubs.Req
     .props({
       body: { userId: 'baz' }
+    }),
+  res: ExpressStubs.Res
+    .props({
+      additionalProp: 'foo',
+      json: 'value_that_overwrites_default_json_prop'
     })
 });
 
@@ -120,13 +125,13 @@ An empty POJO.
 
 ##### {Object} expressStubs.res
 
-Response stub with the following properties:
+Response stub with the default set of properties (see below how you can customize them).
 
 ###### {sinon.spy} expressStubs.res.status
 
 Sinon spy function with an implementation that returns `this` when called by production code - just like Express\` method `status()`.
 
-###### {sinon.spy} expressStubs.res.send
+###### {sinon.spy} expressStubs.res.end
 
 Sinon spy function with empty implementation.
 
@@ -149,10 +154,14 @@ Sinon spy function with empty implementation.
 
 Helper static property referencing default stamp that is used internally for producing `req` stubs. Use it as base stamp to compose your own custom stamp to be passed in `ExpressStubs` factory (see below).
 
+### {Stamp} ExpressStubs.Res
+
+Helper static property referencing default stamp that is used internally for producing `res` stubs. Use it as base stamp to compose your own custom stamp to be passed in `ExpressStubs` factory (see below).
+
 
 ### Creating custom stubs
 
-You can pass your custom implementation of the request stamp to `ExpressStubs` factory function to produce an object with your custom implementation of `req` stub. It's recommended to use `ExpressStubs.Req` as the basics for composition:
+You can pass your custom implementation of the request and/or response stamps to `ExpressStubs` factory function to produce an object with your custom implementation of `req` and/or `res` stubs. It's recommended to use `ExpressStubs.Req` or `ExpressStubs.Res` as the base for composition:
 
 ```js
 const expressStubs = ExpressStubs({
@@ -162,3 +171,26 @@ const expressStubs = ExpressStubs({
     })
 });
 ```
+
+```js
+const expressStubs = ExpressStubs({
+  res: ExpressStubs.Res
+    .props({
+      additionalProp: 'foo',
+      json: 'value_that_overwrites_default_json_prop'
+    })
+});
+```
+
+```js
+const expressStubs = ExpressStubs({
+  req: ExpressStubs.Req
+    .props({
+      body: { userId: 'baz' }
+    }),
+  res: ExpressStubs.Res
+    .props({
+      additionalProp: 'foo',
+      json: 'value_that_overwrites_default_json_prop'
+    })
+});

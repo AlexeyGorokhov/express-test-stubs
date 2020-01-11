@@ -38,7 +38,7 @@ test('custom "req" prop', t => {
   t.end();
 });
 
-test('"res" prop', t => {
+test('default "res" prop', t => {
   const expectedResProp = Res();
 
   const expressStubs = Self();
@@ -47,6 +47,28 @@ test('"res" prop', t => {
     Object.keys(expressStubs.res),
     Object.keys(expectedResProp),
     'should have "res" prop with default value'
+  );
+
+  t.end();
+});
+
+test('custom "res" prop', t => {
+  const CustomResStub = Req
+    .props({
+      additionalProp: Symbol(''),
+      status: Symbol('')
+    });
+
+  const expectedResProp = CustomResStub();
+
+  const expressStubs = Self({
+    res: CustomResStub
+  });
+
+  t.deepEqual(
+    expressStubs.res,
+    expectedResProp,
+    'should have "res" prop with passed value'
   );
 
   t.end();
@@ -86,6 +108,12 @@ test('static helpers', t => {
     Self.Req,
     Req,
     'should include "Req" static helper'
+  );
+
+  t.equal(
+    Self.Res,
+    Res,
+    'should include "Res" static helper'
   );
 
   t.end();

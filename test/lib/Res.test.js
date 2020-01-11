@@ -81,3 +81,45 @@ test('with additional props', t => {
 
   t.end();
 });
+
+test('with overwriting default props', t => {
+  const statusStub = {};
+  const endStub = {};
+  const jsonStub = {};
+  const sendStub = {};
+
+  const res = Res
+    .props({
+      status: statusStub,
+      end: endStub,
+      json: jsonStub,
+      send: sendStub
+    })
+    .create();
+
+  t.equal(
+    res.status,
+    statusStub,
+    'should override "status" prop with passed value'
+  );
+
+  t.equal(
+    res.end,
+    endStub,
+    'should override "end" prop with passed value'
+  );
+
+  t.equal(
+    res.json,
+    jsonStub,
+    'should override "json" prop with passed value'
+  );
+
+  t.equal(
+    res.send,
+    sendStub,
+    'should override "send" prop with passed value'
+  );
+
+  t.end();
+});
